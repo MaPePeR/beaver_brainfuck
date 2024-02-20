@@ -27,3 +27,5 @@ beaver_brainfuck-*.tar
 
 /beaver_brainfuck
 
+/src/bf_lex.erl
+
