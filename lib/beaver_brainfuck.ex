@@ -16,6 +16,25 @@ defmodule BeaverBrainfuck do
     :world
   end
 
+  def lex_code_to_tokens(bf_code) do
+    case :bf_lex.string(to_charlist(bf_code)) do
+      {:ok, tokens, _} -> {:ok, tokens}
+      other -> other
+    end
+  end
+
+  def parse_tokens_to_ast(tokens) do
+    :bf_parser.parse(tokens)
+  end
+
+  def code_to_ast(code) do
+    with {:ok, tokens} <- lex_code_to_tokens(code),
+      {:ok, ast} <- parse_tokens_to_ast(tokens) do
+        {:ok, ast}
+    end
+  end
+
+
   def main(args \\ []) do
     bf_code = case args do
       [filename] -> File.read!(filename)
@@ -25,9 +44,7 @@ defmodule BeaverBrainfuck do
         data -> data
       end
     end
-    {:ok, tokens, _} = :bf_lex.string(to_charlist(bf_code))
-    IO.inspect(tokens)
-    result = :bf_parser.parse(tokens)
-    IO.inspect(result)
+    ast = code_to_ast(bf_code)
+    IO.inspect(ast)
   end
 end
