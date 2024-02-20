@@ -16,7 +16,16 @@ defmodule BeaverBrainfuck do
     :world
   end
 
-  def main(_args \\ []) do
-    IO.puts("Hello World")
+  def main(args \\ []) do
+    bf_code = case args do
+      [filename] -> File.read!(filename)
+      [] -> case IO.read(:stdio, :eof) do
+        :eof -> ""
+        {:error, reason} -> raise "Cannot read from stdio #{reason}"
+        data -> data
+      end
+    end
+    {:ok, tokens, _} = :bf_lex.string(to_charlist(bf_code))
+    IO.inspect(tokens)
   end
 end
