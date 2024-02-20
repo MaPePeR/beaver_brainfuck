@@ -27,5 +27,7 @@ defmodule BeaverBrainfuck do
     end
     {:ok, tokens, _} = :bf_lex.string(to_charlist(bf_code))
     IO.inspect(tokens)
+    result = :bf_parser.parse(tokens)
+    IO.inspect(result)
   end
 end

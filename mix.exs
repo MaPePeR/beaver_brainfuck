@@ -9,7 +9,10 @@ defmodule BeaverBrainfuck.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       escript: escript(),
-      compilers: [:leex] ++ Mix.compilers(),
+      compilers: [
+        :leex,
+        :yecc,
+      ] ++ Mix.compilers(),
     ]
   end
 
