@@ -15,4 +15,8 @@ defmodule BeaverBrainfuck do
   def hello do
     :world
   end
+
+  def main(_args \\ []) do
+    IO.puts("Hello World")
+  end
 end
