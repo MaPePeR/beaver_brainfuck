@@ -1,6 +1,6 @@
-defmodule ElixirBeaverBrainfuck do
+defmodule BeaverBrainfuck do
   @moduledoc """
-  Documentation for `ElixirBeaverBrainfuck`.
+  Documentation for `BeaverBrainfuck`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule ElixirBeaverBrainfuck do
 
   ## Examples
 
-      iex> ElixirBeaverBrainfuck.hello()
+      iex> BeaverBrainfuck.hello()
       :world
 
   """

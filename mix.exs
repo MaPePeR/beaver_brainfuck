@@ -1,9 +1,9 @@
-defmodule ElixirBeaverBrainfuck.MixProject do
+defmodule BeaverBrainfuck.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :elixir_beaver_brainfuck,
+      app: :beaver_brainfuck,
       version: "0.1.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
