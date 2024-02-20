@@ -9,8 +9,8 @@ Rules.
 -           : {token, {decrement, TokenLine}}.
 \.          : {token, {output, TokenLine}}.
 ,           : {token, {input, TokenLine}}.
-\[          : {token, {block_start, TokenLine}}.
-\]          : {token, {block_end, TokenLine}}.
+\[          : {token, {'[', TokenLine}}.
+\]          : {token, {']', TokenLine}}.
 {IGNORE}    : skip_token.
 
 Erlang code.
