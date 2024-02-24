@@ -13,7 +13,7 @@ defmodule BeaverBrainfuck.Dialect do
     []
   end
 
-  def compile_ast([op | tail] = ast, opts) do
+  def compile_ast([op | tail], opts) do
     mlir block: opts[:block], ctx: opts[:ctx] do
       case op do
         {:move_left, _} ->
