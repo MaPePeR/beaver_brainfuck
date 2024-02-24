@@ -22,9 +22,6 @@ require Func
 ctx = MLIR.Context.create()
 alias Beaver.MLIR.Dialect.Arith
 alias Beaver.MLIR.Attribute
-
-# How to register dialect properly?
-# Beaver.MLIR.CAPI.mlirContextSetAllowUnregisteredDialects(ctx, true)
 Beaver.Slang.load(ctx, BeaverBrainfuck.Dialect)
 
 ir =
