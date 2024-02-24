@@ -1,4 +1,5 @@
 # Used by "mix format"
 [
-  inputs: ["{mix,.formatter}.exs", "{config,lib,test}/**/*.{ex,exs}"]
+  import_deps: [:beaver],
+  inputs: ["{mix,.formatter}.exs", "*.exs", "{config,lib,test}/**/*.{ex,exs}"]
 ]

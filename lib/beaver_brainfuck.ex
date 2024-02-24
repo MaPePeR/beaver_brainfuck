@@ -29,21 +29,25 @@ defmodule BeaverBrainfuck do
 
   def code_to_ast(code) do
     with {:ok, tokens} <- lex_code_to_tokens(code),
-      {:ok, ast} <- parse_tokens_to_ast(tokens) do
-        {:ok, ast}
+         {:ok, ast} <- parse_tokens_to_ast(tokens) do
+      {:ok, ast}
     end
   end
 
-
   def main(args \\ []) do
-    bf_code = case args do
-      [filename] -> File.read!(filename)
-      [] -> case IO.read(:stdio, :eof) do
-        :eof -> ""
-        {:error, reason} -> raise "Cannot read from stdio #{reason}"
-        data -> data
+    bf_code =
+      case args do
+        [filename] ->
+          File.read!(filename)
+
+        [] ->
+          case IO.read(:stdio, :eof) do
+            :eof -> ""
+            {:error, reason} -> raise "Cannot read from stdio #{reason}"
+            data -> data
+          end
       end
-    end
+
     ast = code_to_ast(bf_code)
     IO.inspect(ast)
   end
