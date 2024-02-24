@@ -14,25 +14,27 @@ defmodule BeaverBrainfuck.Dialect do
   end
 
   def compile_ast([op | tail], opts) do
+    alias __MODULE__, as: BF
+
     mlir block: opts[:block], ctx: opts[:ctx] do
       case op do
         {:move_left, _} ->
-          BeaverBrainfuck.Dialect.move_left() >>> []
+          BF.move_left() >>> []
 
         {:move_right, _} ->
-          BeaverBrainfuck.Dialect.move_right() >>> []
+          BF.move_right() >>> []
 
         {:increment, _} ->
-          BeaverBrainfuck.Dialect.increment() >>> []
+          BF.increment() >>> []
 
         {:decrement, _} ->
-          BeaverBrainfuck.Dialect.decrement() >>> []
+          BF.decrement() >>> []
 
         {:output, _} ->
-          BeaverBrainfuck.Dialect.output() >>> []
+          BF.output() >>> []
 
         {:input, _} ->
-          BeaverBrainfuck.Dialect.input() >>> []
+          BF.input() >>> []
 
         _ ->
           IO.puts("Can't handle op")
