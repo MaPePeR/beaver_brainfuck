@@ -8,6 +8,7 @@ defmodule BeaverBrainfuck.Dialect do
   defop decrement(), do: []
   defop output(), do: []
   defop input(), do: []
+  defop block(), do: []
 
   def compile_ast([], _opts) do
     []
@@ -36,11 +37,21 @@ defmodule BeaverBrainfuck.Dialect do
         {:input, _} ->
           BF.input() >>> []
 
+        {:block, inside_block} ->
+          BF.block [] do
+            region do
+              Beaver.block _loop() do
+                BeaverBrainfuck.Dialect.compile_ast(inside_block,
+                  block: Beaver.Env.block(),
+                  ctx: Beaver.Env.context()
+                )
+              end
+            end
+          end >>> []
+
         _ ->
           IO.puts("Can't handle op")
           IO.inspect(op)
-
-          # {:block, inside_block} -> Beaver.MLIR.Dialect.SCF.while(ssa) ... compile_ast(inside_block)
       end
     end
 
