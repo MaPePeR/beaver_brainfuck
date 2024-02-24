@@ -3,12 +3,12 @@ defmodule BeaverBrainfuck.Dialect do
   use Beaver
   use Beaver.Slang, name: "brainfuck"
 
-  defop(move_left(), do: [])
-  defop(move_right(), do: [])
-  defop(increment(), do: [])
-  defop(decrement(), do: [])
-  defop(output(), do: [])
-  defop(input(), do: [])
+  defop move_left(), do: []
+  defop move_right(), do: []
+  defop increment(), do: []
+  defop decrement(), do: []
+  defop output(), do: []
+  defop input(), do: []
 
   def compile_ast(ast, opts) when ast != [] do
     [op | tail] = ast
