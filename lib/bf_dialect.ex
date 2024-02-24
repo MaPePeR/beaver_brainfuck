@@ -1,5 +1,4 @@
 defmodule BeaverBrainfuck.Dialect do
-  require Beaver
   use Beaver
   use Beaver.Slang, name: "brainfuck"
 
@@ -10,9 +9,11 @@ defmodule BeaverBrainfuck.Dialect do
   defop output(), do: []
   defop input(), do: []
 
-  def compile_ast(ast, opts) when ast != [] do
-    [op | tail] = ast
+  def compile_ast([], _opts) do
+    []
+  end
 
+  def compile_ast([op | tail] = ast, opts) do
     mlir block: opts[:block], ctx: opts[:ctx] do
       case op do
         {:move_left, _} ->
@@ -42,9 +43,5 @@ defmodule BeaverBrainfuck.Dialect do
     end
 
     compile_ast(tail, opts)
-  end
-
-  def compile_ast(ast, opts) when ast == [] do
-    []
   end
 end
